@@ -1,0 +1,20 @@
+def getSpamEmails(subjects, spam_words):
+    resposta = [""]*len(subjects)
+    spam_words = sorted(spam_words)
+    for i in range(len(subjects)): #pra cada assunto
+        cont = 0
+        txt = subjects[i].split(" ")
+        txt = sorted(txt)
+        for word in spam_words:
+            if cont == 2:
+                resposta[i] = "spam"
+                break
+            for j in range(len(txt)):
+                if word.lower() == txt[j].lower():
+                    cont += 1
+                    break
+        
+        if cont == 0:
+            resposta[i] = "not_spam"
+    return resposta
+                
